@@ -11,10 +11,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>foo</td>
-          <td>bar</td>
-          <td>foobar</td>
+        <tr v-for="book in books" :key="book.id">
+          <td>{{book.title}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.read === true ? 'Yes' : 'No'}}</td>
           <td>
             <button type="button" class="btn btn-warning btn-sm mr-1">Update</button>
             <button type="button" class="btn btn-danger btn-sm">Delete</button>
@@ -26,10 +26,13 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
+  computed: {
+    ...mapGetters([
+      'books'
+    ])
   }
 }
 </script>
