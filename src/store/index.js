@@ -33,9 +33,16 @@ export default new Vuex.Store({
         }
     },
     mutations: {
-        
+        onDelete(state, payload) {
+            let newArray = state.books.filter((item) => {
+                return item.id != payload
+            })
+            return state.books = newArray
+        }
     },
     actions: {
-        
+        onDelete(store, payload) {
+            return store.commit('onDelete', payload)
+        }
     }
 })
