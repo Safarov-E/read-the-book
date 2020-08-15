@@ -1,23 +1,25 @@
 <template>
     <div class="modals">
-        <div class="itemModal">
-            <div class="titleModal">
-                <h5>Add a new book</h5>
-                <span>✖</span>
-            </div>
-            <hr>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Title:</label>
-                <input type="text" class="form-control ml-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
-                <label for="exampleInputEmail1">Author:</label>
-                <input type="text" class="form-control ml-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter author">
-                <label style=""><input type="checkbox"> Read?</label>
-                <div class="pb-3">
-                    <button type="button" class="btn btn-primary mr-2 ml-2">Submit</button>
-                    <button type="button" class="btn btn-danger">Reset</button>
+        <transition name="fade" appear>
+            <div class="itemModal">
+                <div class="titleModal">
+                    <h5>Add a new book</h5>
+                    <span style="cursor: pointer">✖</span>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Title:</label>
+                    <input type="text" class="form-control ml-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
+                    <label for="exampleInputEmail1">Author:</label>
+                    <input type="text" class="form-control ml-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter author">
+                    <label><input type="checkbox"> Read?</label>
+                    <div class="pb-3">
+                        <button type="button" class="btn btn-primary mr-2 ml-2">Submit</button>
+                        <button type="button" class="btn btn-danger">Reset</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </transition>
     </div>
 </template>
 
@@ -57,5 +59,31 @@
     }
     .form-group input[type="text"] {
         width: 95%;
+    }
+    .fade-enter {
+            
+    }
+    .fade-enter-active {
+        animation: slideIn 0.5s;
+    }
+    .fade-enter-to {
+        
+    }
+    .fade-leave {
+        
+    }
+    .fade-leave-active {
+        animation: slideOut 0.5s;
+    }
+    .fade-leave-to {
+        
+    }
+    @keyframes slideIn {
+        from{transform: translateY(-2000px);}
+        to{transform: translateY(0px);}
+    }
+    @keyframes slideOut {
+        from{transform: translateY(0px);}
+        to{transform: translateY(-2000px);}
     }
 </style>
