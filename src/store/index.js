@@ -48,6 +48,9 @@ export default new Vuex.Store({
         },
         onShow(state) {
             return state.show = false;
+        },
+        sendingData(state, payload) {
+            return state.books.push(payload)
         }
     },
     actions: {
@@ -59,6 +62,9 @@ export default new Vuex.Store({
         },
         onShow(store) {
             return store.commit('onShow')
+        },
+        sendingData(store, payload) {
+            return store.commit('sendingData', payload)
         }
     }
 })

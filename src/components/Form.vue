@@ -9,12 +9,22 @@
                 <hr>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Title:</label>
-                    <input type="text" class="form-control ml-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
+                    <input type="text" 
+                           class="form-control ml-2" 
+                           id="exampleInputEmail1" 
+                           aria-describedby="emailHelp" 
+                           placeholder="Enter title"
+                           v-model="title">
                     <label for="exampleInputEmail1">Author:</label>
-                    <input type="text" class="form-control ml-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter author">
-                    <label><input type="checkbox"> Read?</label>
+                    <input type="text" 
+                           class="form-control ml-2" 
+                           id="exampleInputEmail1" 
+                           aria-describedby="emailHelp" 
+                           placeholder="Enter author"
+                           v-model="author">
+                    <label><input type="checkbox" v-model="checked"> Read?</label>
                     <div class="pb-3">
-                        <button type="button" class="btn btn-primary mr-2 ml-2">Submit</button>
+                        <button type="button" class="btn btn-primary mr-2 ml-2" @click="handlerSendingData">Submit</button>
                         <button type="button" class="btn btn-danger" @click="onShow">Reset</button>
                     </div>
                 </div>
@@ -27,11 +37,31 @@
 import {mapActions} from 'vuex'
 export default {
     name: 'Form',
+    data() {
+        return {
+            title: '',
+            author: '',
+            checked: false
+        }
+    },
     methods: {
-    ...mapActions([
-      'onShow'
-    ])
-  }
+        ...mapActions([
+        'onShow',
+        'sendingData'
+        ]),
+        handlerSendingData() {
+            if(this.title != '' && this.author != '') {
+                let data = {
+                    id: Math.floor(Math.random() * 1000000000000000000000),
+                    title: this.title,
+                    author: this.author,
+                    checked: this.checked
+                }
+                this.sendingData(data);
+                this.onShow();
+            }
+        }
+    }
 }
 </script>
 <style scoped>
