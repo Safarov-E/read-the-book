@@ -1,6 +1,6 @@
 <template>
   <div class="mt-5">
-    <button class="btn btn-success mb-3">Add Book</button>
+    <button class="btn btn-success mb-3" @click="show = true">Add Book</button>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -23,14 +23,24 @@
         </tr>
       </tbody>
     </table>
+  <Form v-if="show"></Form>
   </div>
 </template>
 
 <script>
 import {mapGetters} from 'vuex'
 import {mapActions} from 'vuex'
+import Form from './Form'
 export default {
   name: 'HelloWorld',
+  components: {
+    Form
+  },
+  data() {
+    return {
+      show: false
+    }
+  },
   computed: {
     ...mapGetters([
       'books'
