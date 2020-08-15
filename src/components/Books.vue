@@ -1,6 +1,6 @@
 <template>
   <div class="mt-5">
-    <button class="btn btn-success mb-3" @click="show = true">Add Book</button>
+    <button class="btn btn-success mb-3" @click="onHide">Add Book</button>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -36,19 +36,16 @@ export default {
   components: {
     Form
   },
-  data() {
-    return {
-      show: false
-    }
-  },
   computed: {
     ...mapGetters([
-      'books'
+      'books',
+      'show'
     ])
   },
   methods: {
     ...mapActions([
-      'onDelete'
+      'onDelete',
+      'onHide'
     ])
   }
 }

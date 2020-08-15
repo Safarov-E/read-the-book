@@ -4,7 +4,7 @@
             <div class="itemModal">
                 <div class="titleModal">
                     <h5>Add a new book</h5>
-                    <span style="cursor: pointer">✖</span>
+                    <span style="cursor: pointer" @click="onShow">✖</span>
                 </div>
                 <hr>
                 <div class="form-group">
@@ -15,7 +15,7 @@
                     <label><input type="checkbox"> Read?</label>
                     <div class="pb-3">
                         <button type="button" class="btn btn-primary mr-2 ml-2">Submit</button>
-                        <button type="button" class="btn btn-danger">Reset</button>
+                        <button type="button" class="btn btn-danger" @click="onShow">Reset</button>
                     </div>
                 </div>
             </div>
@@ -24,9 +24,15 @@
 </template>
 
 <script>
-    export default {
-        name: 'Form'
-    }
+import {mapActions} from 'vuex'
+export default {
+    name: 'Form',
+    methods: {
+    ...mapActions([
+      'onShow'
+    ])
+  }
+}
 </script>
 <style scoped>
     .itemModal {
@@ -79,11 +85,11 @@
         
     }
     @keyframes slideIn {
-        from{transform: translateY(-2000px);}
+        from{transform: translateY(-100vw);}
         to{transform: translateY(0px);}
     }
     @keyframes slideOut {
         from{transform: translateY(0px);}
-        to{transform: translateY(-2000px);}
+        to{transform: translateY(-100vw);}
     }
 </style>

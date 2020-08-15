@@ -25,11 +25,15 @@ export default new Vuex.Store({
                 author: 'Dr Seuss',
                 read: true
             }
-        ]
+        ],
+        show: false
     },
     getters: {
         books(state) {
             return state.books
+        },
+        show(state) {
+            return state.show
         }
     },
     mutations: {
@@ -38,11 +42,23 @@ export default new Vuex.Store({
                 return item.id != payload
             })
             return state.books = newArray
+        },
+        onHide(state) {
+            return state.show = true;
+        },
+        onShow(state) {
+            return state.show = false;
         }
     },
     actions: {
         onDelete(store, payload) {
             return store.commit('onDelete', payload)
+        },
+        onHide(store) {
+            return store.commit('onHide')
+        },
+        onShow(store) {
+            return store.commit('onShow')
         }
     }
 })
