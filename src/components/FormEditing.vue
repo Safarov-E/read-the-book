@@ -58,7 +58,9 @@ export default {
     methods: {
         ...mapActions([
             'onShowEditing',
-            'handlerEditingValueArray'
+            'handlerEditingValueArray',
+            'handlerShowUpdated',
+            'handlerHideAdded'
         ]),
         handlerEdditingValue() {
             if(this.title != '' && this.author != '') {
@@ -70,6 +72,8 @@ export default {
                 }
                 this.handlerEditingValueArray(data);
                 this.onShowEditing();
+                this.handlerShowUpdated();
+                this.handlerHideAdded()
             }
         }
     }

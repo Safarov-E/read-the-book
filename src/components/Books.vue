@@ -1,6 +1,6 @@
 <template>
   <div class="mt-5">
-    <button class="btn btn-success mb-3" @click="onHide">Add Book</button>
+    <button class="btn btn-success mb-3" @click="onHide(), handlerHideUpdated()">Add Book</button>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -19,7 +19,7 @@
             <button type="button" class="btn btn-warning btn-sm mr-1"
                     @click="onHideEditing(), onModelEditing(book.id)">Update</button>
             <button type="button" class="btn btn-danger btn-sm"
-                    @click="onDelete(book.id)">Delete</button>
+                    @click="onDelete(book.id), handlerHideAdded(), handlerHideUpdated()">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -52,7 +52,9 @@ export default {
       'onDelete',
       'onHide',
       'onHideEditing',
-      'handlerEditing'
+      'handlerEditing',
+      'handlerHideAdded',
+      'handlerHideUpdated'
     ]),
     onModelEditing(id) {
       this.handlerEditing(id)

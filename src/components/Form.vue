@@ -47,7 +47,8 @@ export default {
     methods: {
         ...mapActions([
         'onShow',
-        'sendingData'
+        'sendingData',
+        'handlerShowAdded'
         ]),
         handlerSendingData() {
             if(this.title != '' && this.author != '') {
@@ -59,6 +60,7 @@ export default {
                 }
                 this.sendingData(data);
                 this.onShow();
+                this.handlerShowAdded();
             }
         }
     }

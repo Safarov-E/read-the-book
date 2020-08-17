@@ -28,7 +28,9 @@ export default new Vuex.Store({
         ],
         show: false,
         showEditing: false,
-        edditingBook: []
+        edditingBook: [],
+        showAdded: false,
+        showUpdated: false
     },
     getters: {
         books(state) {
@@ -42,6 +44,12 @@ export default new Vuex.Store({
         },
         edditingBook(state) {
             return state.edditingBook
+        },
+        showAdded(state) {
+            return state.showAdded
+        },
+        showUpdated(state) {
+            return state.showUpdated
         }
     },
     mutations: {
@@ -80,6 +88,18 @@ export default new Vuex.Store({
                     item.read = payload.read
                 }
             })
+        },
+        handlerShowAdded(state) {
+            return state.showAdded = true
+        },
+        handlerHideAdded(state) {
+            return state.showAdded = false
+        },
+        handlerShowUpdated(state) {
+            return state.showUpdated = true
+        },
+        handlerHideUpdated(state) {
+            return state.showUpdated = false
         }
     },
     actions: {
@@ -106,6 +126,18 @@ export default new Vuex.Store({
         },
         handlerEditingValueArray(store, payload) {
             return store.commit('handlerEditingValueArray', payload)
+        },
+        handlerShowAdded(store) {
+            return store.commit('handlerShowAdded')
+        },
+        handlerHideAdded(store) {
+            return store.commit('handlerHideAdded')
+        },
+        handlerShowUpdated(store) {
+            return store.commit('handlerShowUpdated')
+        },
+        handlerHideUpdated(store) {
+            return store.commit('handlerHideUpdated')
         }
     }
 })
