@@ -26,7 +26,9 @@ export default new Vuex.Store({
                 read: true
             }
         ],
-        show: false
+        show: false,
+        showEditing: false,
+        edditingBook: []
     },
     getters: {
         books(state) {
@@ -34,6 +36,12 @@ export default new Vuex.Store({
         },
         show(state) {
             return state.show
+        },
+        showEditing(state) {
+            return state.showEditing
+        },
+        edditingBook(state) {
+            return state.edditingBook
         }
     },
     mutations: {
@@ -51,6 +59,18 @@ export default new Vuex.Store({
         },
         sendingData(state, payload) {
             return state.books.push(payload)
+        },
+        onShowEditing(state) {
+            return state.showEditing = false;
+        },
+        onHideEditing(state) {
+            return state.showEditing = true;
+        },
+        handlerEditing(state, payload) {
+            let array = state.books.filter((item) => {
+                return item.id == payload
+            })
+            state.edditingBook = array
         }
     },
     actions: {
@@ -65,6 +85,15 @@ export default new Vuex.Store({
         },
         sendingData(store, payload) {
             return store.commit('sendingData', payload)
+        },
+        onShowEditing(store) {
+            return store.commit('onShowEditing')
+        },
+        onHideEditing(store) {
+            return store.commit('onHideEditing')
+        },
+        handlerEditing(store, payload) {
+            return store.commit('handlerEditing', payload)
         }
     }
 })

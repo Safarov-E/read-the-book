@@ -3,8 +3,8 @@
         <transition name="fade" appear>
             <div class="itemModal">
                 <div class="titleModal">
-                    <h5>Add a new book</h5>
-                    <span style="cursor: pointer" @click="onShow">✖</span>
+                    <h5>Update</h5>
+                    <span style="cursor: pointer" @click="onShowEditing">✖</span>
                 </div>
                 <hr>
                 <div class="form-group">
@@ -24,8 +24,8 @@
                            v-model="author">
                     <label><input type="checkbox" v-model="checked"> Read?</label>
                     <div class="pb-3">
-                        <button type="button" class="btn btn-primary mr-2 ml-2" @click="handlerSendingData">Submit</button>
-                        <button type="button" class="btn btn-danger" @click="onShow">Reset</button>
+                        <button type="button" class="btn btn-primary mr-2 ml-2">Submit</button>
+                        <button type="button" class="btn btn-danger" @click="onShowEditing">Reset</button>
                     </div>
                 </div>
             </div>
@@ -34,33 +34,31 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 import {mapActions} from 'vuex'
 export default {
-    name: 'Form',
+    name: 'FormEditing',
     data() {
         return {
             title: '',
             author: '',
-            checked: false
+            checked: ''
         }
+    },
+    created(){
+        this.title = this.edditingBook[0].title;
+        this.author = this.edditingBook[0].author;
+        this.checked = this.edditingBook[0].read;
+    },
+    computed: {
+        ...mapGetters([
+            'edditingBook'
+        ])
     },
     methods: {
         ...mapActions([
-        'onShow',
-        'sendingData'
-        ]),
-        handlerSendingData() {
-            if(this.title != '' && this.author != '') {
-                let data = {
-                    id: Math.floor(Math.random() * 1000000000000000000000),
-                    title: this.title,
-                    author: this.author,
-                    read: this.checked
-                }
-                this.sendingData(data);
-                this.onShow();
-            }
-        }
+            'onShowEditing'
+        ])
     }
 }
 </script>

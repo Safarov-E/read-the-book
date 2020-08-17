@@ -16,7 +16,8 @@
           <td>{{book.author}}</td>
           <td>{{book.read === true ? 'Yes' : 'No'}}</td>
           <td>
-            <button type="button" class="btn btn-warning btn-sm mr-1">Update</button>
+            <button type="button" class="btn btn-warning btn-sm mr-1"
+                    @click="onHideEditing(), onModelEditing(book.id)">Update</button>
             <button type="button" class="btn btn-danger btn-sm"
                     @click="onDelete(book.id)">Delete</button>
           </td>
@@ -24,6 +25,7 @@
       </tbody>
     </table>
   <Form v-if="show"></Form>
+  <FormEditing v-if="showEditing"></FormEditing>
   </div>
 </template>
 
@@ -31,22 +33,30 @@
 import {mapGetters} from 'vuex'
 import {mapActions} from 'vuex'
 import Form from './Form'
+import FormEditing from './FormEditing'
 export default {
   name: 'HelloWorld',
   components: {
-    Form
+    Form,
+    FormEditing
   },
   computed: {
     ...mapGetters([
       'books',
-      'show'
+      'show',
+      'showEditing'
     ])
   },
   methods: {
     ...mapActions([
       'onDelete',
-      'onHide'
-    ])
+      'onHide',
+      'onHideEditing',
+      'handlerEditing'
+    ]),
+    onModelEditing(id) {
+      this.handlerEditing(id)
+    }
   }
 }
 </script>
