@@ -24,7 +24,7 @@
                            v-model="author">
                     <label><input type="checkbox" v-model="checked"> Read?</label>
                     <div class="pb-3">
-                        <button type="button" class="btn btn-primary mr-2 ml-2">Submit</button>
+                        <button type="button" class="btn btn-primary mr-2 ml-2" @click="handlerEdditingValue()">Submit</button>
                         <button type="button" class="btn btn-danger" @click="onShowEditing">Reset</button>
                     </div>
                 </div>
@@ -57,8 +57,21 @@ export default {
     },
     methods: {
         ...mapActions([
-            'onShowEditing'
-        ])
+            'onShowEditing',
+            'handlerEditingValueArray'
+        ]),
+        handlerEdditingValue() {
+            if(this.title != '' && this.author != '') {
+                let data = {
+                    id: this.edditingBook[0].id,
+                    title: this.title,
+                    author: this.author,
+                    read: this.checked
+                }
+                this.handlerEditingValueArray(data);
+                this.onShowEditing();
+            }
+        }
     }
 }
 </script>

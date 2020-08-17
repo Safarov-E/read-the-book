@@ -71,6 +71,15 @@ export default new Vuex.Store({
                 return item.id == payload
             })
             state.edditingBook = array
+        },
+        handlerEditingValueArray(state, payload) {
+            state.books.map((item) => {
+                if(item.id == payload.id) {
+                    item.title = payload.title
+                    item.author = payload.author
+                    item.read = payload.read
+                }
+            })
         }
     },
     actions: {
@@ -94,6 +103,9 @@ export default new Vuex.Store({
         },
         handlerEditing(store, payload) {
             return store.commit('handlerEditing', payload)
+        },
+        handlerEditingValueArray(store, payload) {
+            return store.commit('handlerEditingValueArray', payload)
         }
     }
 })
